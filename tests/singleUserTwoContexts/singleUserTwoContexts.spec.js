@@ -21,7 +21,6 @@ test.describe('Single user in two contexts', () => {
   });
 
   test('User can sign in with changed profile password', async ({
-    page2,
     user,
   }) => {
     const newPassword = faker.internet.password();
@@ -39,18 +38,13 @@ test.describe('Single user in two contexts', () => {
   test('User can see own article in "Global feed" when not logged in', async ({
     page1,
     page2,
-    user,
     articleWithoutTags,
   }) => {
     await createArticle(page1, articleWithoutTags);
 
     await homePage.open();
-    await page2.waitForLoadState('networkidle');
-    const globalFeedVisible = await homePage.globalFeedTab.isVisible().catch(() => false);
-    if (globalFeedVisible) {
-      await homePage.clickGlobalFeedTab();
-      await page2.waitForLoadState('networkidle');
-    }
+    await page2.waitForLoadState('load');
+    await homePage.clickGlobalFeedTab();
 
     const viewArticlePage = new ViewArticlePage(page2);
     await viewArticlePage.open(articleWithoutTags.url);

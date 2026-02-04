@@ -10,7 +10,9 @@ import { Logger } from '../../../src/common/logger/Logger';
 const logger = new Logger('error');
 
 test.describe('Multi-user: view, follow, unfollow, feed', () => {
-  test('User can view an article created by another user in the Global Feed', async ({
+  test(
+    'User can view an article created by another user in the Global Feed',
+    async ({
     page1,
     page2,
     user1,
@@ -94,7 +96,9 @@ test.describe('Multi-user: view, follow, unfollow, feed', () => {
     await viewArticlePage.assertArticleAuthorNameIsVisible(user1.username);
   });
 
-  test('User can see other user\'s new articles in "Your Feed" after following their profile', async ({
+  test(
+    'User can see other user\'s new articles in "Your Feed" after following',
+    async ({
     page1,
     page2,
     user1,
@@ -119,7 +123,9 @@ test.describe('Multi-user: view, follow, unfollow, feed', () => {
     await homePage.assertArticleInFeed(secondArticle.title);
   });
 
-  test('User doesn\'t see other user\'s articles in "Your Feed" after unfollowing their profile', async ({
+  test(
+    'User doesn\'t see other user\'s articles in "Your Feed" after unfollowing',
+    async ({
     page1,
     page2,
     user1,

@@ -50,15 +50,15 @@ export class HomePage {
 
   async assertArticleInFeed(title) {
     await test.step(`Assert article '${title}' is visible in feed`, async () => {
-      await expect(this.articleLinkInFeed(title)).toBeVisible({
-        timeout: 10000,
-      });
+      await expect(this.articleLinkInFeed(title)).toBeVisible(
+        { timeout: 10000 },
+      );
     });
   }
 
   async assertArticleNotInFeed(title) {
     await test.step(`Assert article '${title}' is not in feed`, async () => {
-      await expect(this.articleLinkInFeed(title)).not.toBeVisible();
+      await expect(this.articleLinkInFeed(title)).toBeHidden();
     });
   }
 }

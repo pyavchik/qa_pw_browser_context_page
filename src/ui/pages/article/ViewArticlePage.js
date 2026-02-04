@@ -65,8 +65,13 @@ export class ViewArticlePage {
   }
 
   async assertArticleAuthorNameIsVisible(username) {
-    await test.step(`Assert the article has correct author username`, async () => {
-      await expect(this.authorLinkInArticleHeader(username)).toBeVisible();
-    });
+    await test.step(
+      `Assert the article has correct author username`,
+      async () => {
+        await expect(
+          this.authorLinkInArticleHeader(username),
+        ).toBeVisible();
+      },
+    );
   }
 }
