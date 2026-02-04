@@ -49,7 +49,8 @@ export class HomePage {
   }
 
   async assertArticleInFeed(title) {
-    await test.step(`Assert article '${title}' is visible in feed`, async () => {
+    await test.step(`Assert article '${title}' is visible in feed`,
+      async () => {
       await expect(this.articleLinkInFeed(title)).toBeVisible(
         { timeout: 10000 },
       );
