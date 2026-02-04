@@ -45,6 +45,7 @@ test.describe('Single user in two contexts', () => {
     await homePage.open();
     await page2.waitForLoadState('load');
     await homePage.clickGlobalFeedTab();
+    await homePage.assertArticleInFeed(articleWithoutTags.title);
 
     const viewArticlePage = new ViewArticlePage(page2);
     await viewArticlePage.open(articleWithoutTags.url);
