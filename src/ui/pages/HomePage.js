@@ -48,13 +48,14 @@ export class HomePage {
     return this.page.getByRole('link').filter({ hasText: title }).first();
   }
 
-  async assertArticleInFeed(title) {
+  async assertArticleInFeed(title, options = {}) {
+    const timeout = options.timeout ?? 10000;
     await test.step(`Assert article '${title}' is visible in feed`,
       async () => {
-      await expect(this.articleLinkInFeed(title)).toBeVisible(
-        { timeout: 10000 },
-      );
-    });
+        await expect(this.articleLinkInFeed(title)).toBeVisible(
+          { timeout },
+        );
+      });
   }
 
   async assertArticleNotInFeed(title) {
