@@ -28,7 +28,9 @@ test.describe('Multi-user: view, follow, unfollow, feed', () => {
 
       const viewArticlePage = new ViewArticlePage(page2);
       await viewArticlePage.open(articleWithoutTags.url);
-      await viewArticlePage.assertArticleTitleIsVisible(articleWithoutTags.title);
+      await viewArticlePage.assertArticleTitleIsVisible(
+        articleWithoutTags.title,
+      );
       await viewArticlePage.assertArticleAuthorNameIsVisible(user1.username);
     },
   );
