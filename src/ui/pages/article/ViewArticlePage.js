@@ -7,7 +7,39 @@ export class ViewArticlePage {
   }
 
   authorLinkInArticleHeader(username) {
-    return this.page.getByRole('link', { username }).first();
+    return this.page.getByRole('link', { name: username }).first();
+  }
+
+  get followAuthorButton() {
+    return this.page.getByRole('button', { name: /Follow/ }).first();
+  }
+
+  get unfollowAuthorButton() {
+    return this.page.getByRole('button', { name: /Unfollow/ }).first();
+  }
+
+  async clickFollowAuthor() {
+    await test.step(`Click 'Follow' the article author`, async () => {
+      await this.followAuthorButton.click();
+    });
+  }
+
+  async clickUnfollowAuthor() {
+    await test.step(`Click 'Unfollow' the article author`, async () => {
+      await this.unfollowAuthorButton.click();
+    });
+  }
+
+  async assertFollowButtonIsVisible() {
+    await test.step(`Assert 'Follow' button is visible`, async () => {
+      await expect(this.followAuthorButton).toBeVisible();
+    });
+  }
+
+  async assertUnfollowButtonIsVisible() {
+    await test.step(`Assert 'Unfollow' button is visible`, async () => {
+      await expect(this.unfollowAuthorButton).toBeVisible();
+    });
   }
 
   url() {

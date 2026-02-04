@@ -10,6 +10,9 @@ export class CreateArticlePage {
     this.publishArticleButton = page.getByRole('button', {
       name: 'Publish Article',
     });
+    this.updateArticleButton = page.getByRole('button', {
+      name: 'Update Article',
+    });
     this.errorMessage = page.getByRole('list').nth(1);
   }
 
@@ -62,6 +65,19 @@ export class CreateArticlePage {
         await this.fillTagsField(article.tags);
       }
       await this.clickPublishArticleButton();
+    });
+  }
+
+  async submitUpdateArticleForm(article) {
+    await test.step(`Submit the 'Update Article' form`, async () => {
+      await this.fillTitleField(article.title);
+      await this.fillDescriptionField(article.description);
+      await this.fillTextField(article.text);
+      // eslint-disable-next-line playwright/no-conditional-in-test
+      if (article.tags && article.tags.length > 0) {
+        await this.fillTagsField(article.tags);
+      }
+      await this.updateArticleButton.click();
     });
   }
 
